@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createStage } from "../gameHelpers";
+import { createStage } from "../gameHelper";
 
 //Components
 import Stage from "./Stage";
