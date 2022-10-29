@@ -19,7 +19,9 @@ export default function Tetris() {
   const [player] = usePlayer();
   const [stage, setStage] = useStage(player);
 
-  const movePlayer = (dir) => {};
+  const movePlayer = (dir) => {
+    updatePlayerPos({ x: dir, y: 0 });
+  };
 
   const startGame = () => {
     //Reset everything
@@ -62,7 +64,7 @@ export default function Tetris() {
               <Display text='Level' />
             </div>
           )}
-          <StartButton />
+          <StartButton onClick={startGame()} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
