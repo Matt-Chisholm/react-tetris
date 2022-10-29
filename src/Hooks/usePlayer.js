@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { STAGE_WIDTH } from "../gameHelper";
 import { randomTetromino } from "../tetrominos";
 
 // UsePlayer Custom Hook that sets the player state and updates the player state
@@ -17,13 +18,13 @@ export const usePlayer = () => {
     }));
   };
 
-  const resetPlayer = () => {
+  const resetPlayer = useCallback(() => {
     setPlayer({
-      pos: { x: 0, y: 0 },
+      pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
       tetromino: randomTetromino().shape,
       collided: false,
     });
-  };
+  }, []);
 
   return [player, resetPlayer, updatePlayerPos];
 };
