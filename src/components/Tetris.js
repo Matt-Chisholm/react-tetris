@@ -11,12 +11,13 @@ import { useStage } from "../Hooks/useStage";
 import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
+import { createStage } from "../gameHelper";
 
 export default function Tetris() {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [player] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer] = usePlayer();
   const [stage, setStage] = useStage(player);
 
   const movePlayer = (dir) => {
@@ -64,7 +65,7 @@ export default function Tetris() {
               <Display text='Level' />
             </div>
           )}
-          <StartButton onClick={startGame()} />
+          <StartButton callback={startGame()} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
