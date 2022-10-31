@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { createStage } from "../gameHelper";
 
-// Custom Hook that sets the stage state and updates the stage state
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
 
@@ -28,7 +27,7 @@ export const useStage = (player, resetPlayer) => {
     };
 
     setStage((prev) => updateStage(prev));
-  }, [player.tetromino, player.collided, player.pos.x, player.pos.y]);
+  }, [player.collided, player.pos.x, player.pos.y, player.tetromino]);
 
   return [stage, setStage];
 };

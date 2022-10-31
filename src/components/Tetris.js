@@ -1,31 +1,35 @@
 import React, { useState } from "react";
 
-// Styled components
+import { createStage } from "../gameHelper";
+
+// Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 
 // Custom Hooks
-import { usePlayer } from "../Hooks/usePlayer";
 import { useStage } from "../Hooks/useStage";
+import { usePlayer } from "../Hooks/usePlayer";
 
-//Components
+// Components
 import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
-import { createStage } from "../gameHelper";
 
-export default function Tetris() {
+const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
   const [stage, setStage] = useStage(player);
 
+  console.log("re-render");
+
   const movePlayer = (dir) => {
     updatePlayerPos({ x: dir, y: 0 });
   };
 
   const startGame = () => {
-    //Reset everything
+    console.log("test");
+    // Reset everything
     setStage(createStage());
     resetPlayer();
   };
@@ -50,9 +54,8 @@ export default function Tetris() {
     }
   };
 
-  console.log("rerender");
   return (
-    <StyledTetrisWrapper role='button' tabIndex='0' on KeyDown={(e) => move(e)}>
+    <StyledTetrisWrapper role='button' tabIndex='0' onKeyDown={(e) => move(e)}>
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
@@ -65,9 +68,11 @@ export default function Tetris() {
               <Display text='Level' />
             </div>
           )}
-          <StartButton callback={startGame()} />
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
   );
-}
+};
+
+export default Tetris;
