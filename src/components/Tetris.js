@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { checkCollision, createStage } from "../gameHelper";
+import { createStage, checkCollision } from "../gameHelper";
 
 // Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 
 // Custom Hooks
-import { useStage } from "../Hooks/useStage";
 import { usePlayer } from "../Hooks/usePlayer";
+import { useStage } from "../Hooks/useStage";
 
 // Components
 import Stage from "./Stage";
